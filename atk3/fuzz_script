@@ -1,0 +1,22 @@
+#/usr/bin/python2
+import socket
+import sys
+
+
+counter = 100
+ip=sys.argv[1]
+port=sys.argv[2]
+vuln_param=sys.argv[3]
+
+# Create an array of buffers, from 10 to 2000, with increments of 20.
+fuzz_strings = ["A"]
+while len(fuzz_strings) <= 30:
+fuzz_strings.append("A" * counter)
+counter = counter + 200
+for fuzz in fuzz_strings:
+print "Fuzzing with %s bytes" % len(fuzz)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+connect = s.connect((ip,port))
+s.send(vuln_param + fuzz + '\r\n\r\n' )
+print s.recv(1024)
+s.close()
