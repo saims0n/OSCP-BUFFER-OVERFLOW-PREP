@@ -10,6 +10,27 @@ Be Connected Thank you!!
 The very firs step is to getting the crash byte after knowing the host and port,vuln param 
 of the server.....
 
+Part 1
+
+    Fuzzing the service parameter and getting the crash byte
+    Generating the pattern
+    Finding the correct offset where the byte crashes with the help of (EIP)
+
+Part 2
+
+    Finding the bad character with mona.py, and comparing bad character strings with mona.py
+    Finding return address (JMP ESP) with mona.py
+
+Part 3
+
+    Setting breakpoint to verify RETURN address is correct or not
+    Creating reverse shell with the help of msfvenom
+    Adding NOP’s to the script
+    Getting shell
+
+
+
+
 
 1) So for the Any binary we have to fuzz from 100 to Untill crash the program,
    To do so first we have to find out which input parameter of the is vulnrable to overflow.
@@ -33,7 +54,7 @@ of the server.....
    more thing 
    now we have offset=524
    eip="B" * 4 (this will always contain the eip )
-   shellcode= "C"* 400 (this is the space where the stack in buffer fill with s   shell code )
+   shellcode= "C"* 400 (this is the space where the stack in buffer fill with  shell code )
 
 5) Creating the working dir in im-debug
    !mona config -set workingfolder c:\logs\%p
@@ -48,11 +69,11 @@ of the server.....
 
 7) now we have to verify if ther's any badchar....
     !mona compare -f C:\logs\brainpan\bytearray.bin -a 005FF910
-   if the result is normal then ther's only one badchar "/x00"
+   if the result is normal then ther's only one badchar  ecept: "/x00"
 
 Now we have to find the jump esp location 
 
-8) check if there is any module that is true by os
+8) check if there is any module that is vulnrable and false by os
    !mona modules 
    ther's a module brainpain.exe
 
