@@ -58,7 +58,7 @@ Part 3
 
 5) Creating the working dir in im-debug
     
-    !mona config -set workingfolder c:\logs\%p
+    <h4> '!mona config -set workingfolder c:\logs\%p' </h4>
 
  Now next is to finding the bad char with the help of all possible hex
 
