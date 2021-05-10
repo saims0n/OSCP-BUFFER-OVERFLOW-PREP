@@ -57,7 +57,8 @@ Part 3
    shellcode= "C"* 400 (this is the space where the stack in buffer fill with  shell code )
 
 5) Creating the working dir in im-debug
-     !mona config -set workingfolder c:\logs\%p
+    
+    !mona config -set workingfolder c:\logs\%p
 
  Now next is to finding the bad char with the help of all possible hex
 
