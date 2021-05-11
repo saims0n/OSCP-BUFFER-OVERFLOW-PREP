@@ -69,12 +69,25 @@ Part 3
 6)To do this we have to create an array with mona.py to compair with out paylod
 
     !mona bytearray -b '\x00'
-    send the payload 
+    
+    This mona command will genrate an array of all possible hex of char.into two file on bytearry.txt another is bytearray.bin 
+    Where bytearray.txt contain possible hex excet what we input in !mona command like '\x00' will not be in the list.and mona will compaire this array with
+    bytearray.bin 
+    we will be using byearray.txt as our badchar payload... to find out this using mone in your windows machine. 
+    >superkey + r => c:/logs/oscp/bytearray.txt ('where oscp is program name insert the value and hit enter. ')
+    Using this as badchar you can send the payload. Or you can genrate it by the badchargenrater.py you can find in this repo. 
 
-7)Now we have to verify if ther's any badchar....
+7)Now we have to verify if ther's any  badchar ("This is very importat phase of exploitation be careful while doing..") as well find out them other wise our shell code will pe break where the bad char exist in our payload.
     
     !mona compare -f C:\logs\brainpan\bytearray.bin -a 005FF910
-    if the result is normal then ther's only one badchar  ecept: "/x00"
+    
+    if the popup result is unmodified and normal  then ther's only one badchar  ecept: "/x00"
+    
+    else again genrate the badchar using mona copy again the hex('this is the only critical part')
+    sometime you'll see bad char are too many like  00 8c 8d  ae af be bf fb fc in this case you've to skip the one who is showing just because the erlier of the char 
+    is bad in simple => x00\x8c\xae\xbe\xfb ('this is actual bad char ') i just skiped 8d af bf fc because they are just showing in case of erlier one is bad.
+    hope it making sence.please check out another binaries listed above.
+   
 
    Now we have to find the jump esp location 
 
