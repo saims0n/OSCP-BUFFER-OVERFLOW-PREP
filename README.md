@@ -78,7 +78,8 @@ Part 3
 
    Now we have to find the jump esp location 
 
-8) Check if there is any module that is vulnrable and false by os
+8)Check if there is any module that is vulnrable and false by os
+     
      !mona modules 
      ther's a module brainpain.exe
 
